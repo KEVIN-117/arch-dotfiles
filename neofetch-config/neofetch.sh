@@ -21,4 +21,4 @@ if ! command -v chafa &> /dev/null; then
 fi
 
 # Ejecutar Neofetch con nuestra configuración Ghost Cyan HUD y la imagen pixelArt.jpg estática
-neofetch --config "$DIR/config.conf" --source "$DIR/images/pixelArt.jpg"
+neofetch --config "$DIR/config.conf"
