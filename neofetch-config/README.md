@@ -1,54 +1,56 @@
-# 👾 Cyberpunk Neofetch - Ghost Cyan & ARCH Graffiti HUD
+# 👾 Cyberpunk Neofetch - Alacritty & VM Optimized HUD
 
-Una configuración premium de Neofetch ultra-simplificada, altamente compatible y de estética hacker/cyberpunk. Este diseño utiliza un **logotipo de ARCH personalizado en formato ASCII de estilo Graffiti** con un hermoso degradado de color, acompañado de un panel HUD con iconos geométricos y barras de progreso bajo la paleta de colores **Ghost Cyan (Ice Cold)**.
+Una configuración premium de Neofetch ultra-simplificada, altamente compatible y optimizada específicamente para emuladores de terminal como **Alacritty** ejecutados sobre **ZSH** dentro de entornos emulados en **Máquinas Virtuales (VM)**.
+
+Este diseño carga una imagen estática a todo color (**pixelArt.jpg**) utilizando la tecnología de conversión de imágenes por bloques ANSI **Chafa**, acompañada de un panel HUD con iconos geométricos y barras de progreso bajo la paleta de colores **Ghost Cyan (Ice Cold)**.
 
 ---
 
 ## ✨ Características Principales
 
-1. **ARCH Graffiti Logo**: Integra el arte ASCII solicitado para ARCH con un hermoso degradado dinámico de colores Ghost Cyan:
-   * **Parte Superior**: `81` (Celeste)
-   * **Parte Central**: `51` (Cian brillante)
-   * **Parte Inferior**: `14` y `6` (Cian claro y cian estándar)
-2. **Paleta Ghost Cyan**: Una paleta de colores fijos de alto contraste y estética futurista fría:
+1. **Optimización para Alacritty & VM (Chafa Backend)**: Alacritty y los entornos virtuales suelen carecer de soporte de aceleración gráfica para mostrar imágenes tradicionales (mediante `w3m` o `ueberzug`). Usamos **Chafa**, que procesa cualquier imagen real en bloques de caracteres ANSI a todo color en alta definición de forma matemática, garantizando un renderizado 100% perfecto, rápido y sin fallos de pantalla.
+2. **Imagen Estática de Preferencia**: Cargamos de forma estática la espectacular imagen `images/pixelArt.jpg`, que encaja de forma perfecta con el look cian cibernético.
+3. **Paleta Ghost Cyan**: Una paleta de colores fijos de alto contraste y estética futurista fría:
    * **Bordes y Etiquetas**: `51` (Cian brillante)
    * **Cabecera (Símbolo )**: `81` (Celeste)
    * **Valores de Información**: `7` (Blanco brillante de alta legibilidad y contraste)
-3. **HUD Panel Simplificado**: Estructura minimalista y limpia encapsulada en cajas estéticas (`┌─┤├─┐`).
-4. **Barras de Progreso Reales**: Monitoreo de CPU, RAM y Disco mediante bloques progresivos de carga (`██████░░░░`).
-5. **Iconos Geométricos Cyber-Retro**: Iconografía limpia e integrada (`▲`, `⚃`, `♦`, `❖`, `▣`, `■`, `●`) compatible con cualquier terminal.
+4. **HUD Panel Simplificado**: Estructura minimalista y limpia encapsulada en cajas estéticas (`┌─┤├─┐`).
+5. **Barras de Progreso Reales**: Monitoreo de CPU, RAM y Disco mediante bloques progresivos de carga (`██████░░░░`).
+6. **Iconos Geométricos Cyber-Retro**: Iconografía limpia e integrada (`▲`, `⚃`, `♦`, `❖`, `▣`, `■`, `●`).
 
 ---
 
 ## 📁 Estructura de Archivos del Directorio
 
-* [config.conf](file:///c:/Users/MSI%20CYBORG%2014/profile/repos/dotfiles/neofetch-config/config.conf): Configuración estática de Neofetch que contiene el diseño HUD, colores Ghost Cyan y el mapeo de los módulos.
-* [arch_ascii.txt](file:///c:/Users/MSI%20CYBORG%2014/profile/repos/dotfiles/neofetch-config/arch_ascii.txt): Archivo de texto que almacena el banner ASCII personalizado de ARCH en colores degradados.
-* [neofetch.sh](file:///c:/Users/MSI%20CYBORG%2014/profile/repos/dotfiles/neofetch-config/neofetch.sh): Lanzador minimalista en Bash encargado de ejecutar Neofetch con esta configuración.
+* [config.conf](file:///c:/Users/MSI%20CYBORG%2014/profile/repos/dotfiles/neofetch-config/config.conf): Configuración estática de Neofetch que contiene el diseño HUD, colores Ghost Cyan y la ruta a la imagen.
+* [neofetch.sh](file:///c:/Users/MSI%20CYBORG%2014/profile/repos/dotfiles/neofetch-config/neofetch.sh): Lanzador minimalista en Bash encargado de ejecutar Neofetch.
+* **images/**: Carpeta que contiene la imagen fija `pixelArt.jpg`.
 
 ---
 
 ## 🚀 Instrucciones de Uso
 
-Para empezar a utilizar tu HUD de Neofetch, sigue estos sencillos pasos:
+Sigue estos sencillos pasos en tu sistema Arch Linux dentro de tu VM:
 
-### 1. Dar permisos de ejecución
-Asegúrate de que el script lanzador tenga permisos de ejecución en Linux:
+### 1. Instalar Chafa (Prerrequisito esencial para Alacritty)
+Para poder renderizar la imagen real en bloques de caracteres estéticos de alta definición, instala `chafa` en tu sistema:
 ```bash
-chmod +x neofetch.sh
+sudo pacman -S chafa
 ```
 
-### 2. Ejecutar tu Neofetch
-Simplemente ejecuta el script wrapper desde tu terminal:
+### 2. Dar permisos de ejecución y probar
+Asegúrate de que el script lanzador tenga permisos de ejecución:
 ```bash
+chmod +x neofetch.sh
 ./neofetch.sh
 ```
 
 ---
 
-## 💡 Consejo de Pro
-Puedes añadir un alias a tu archivo `.zshrc` o `.bashrc` para poder ejecutar esta belleza desde cualquier lugar de tu terminal al abrirla:
+## 💡 Consejo de Pro (ZSH integration)
+Dado que usas **ZSH**, puedes crear una integración genial. Abre tu archivo `~/.zshrc` e integra el script para que se ejecute automáticamente cada vez que abras una nueva pestaña en tu terminal Alacritty:
 ```bash
-alias cyberfetch="~/profile/repos/dotfiles/neofetch-config/neofetch.sh"
+# Agregar al final de ~/.zshrc
+~/profile/repos/dotfiles/neofetch-config/neofetch.sh
 ```
-¡Disfruta de tu nuevo entorno cyberpunk de alto contraste! 🦾🧊
+¡Disfruta de tu espectacular entorno cyberpunk de alto contraste! 🦾🧊

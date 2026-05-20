@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
-# Wrapper para ejecutar Neofetch con temática Cyberpunk Ghost Cyan
-# Renderiza un logotipo de ARCH personalizado en formato ASCII con degradado y un HUD de recursos de alta legibilidad.
+# Wrapper ultra-simplificado para ejecutar Neofetch en Alacritty (VM)
+# Utiliza la imagen fija 'pixelArt.jpg' con la tecnología de renderizado Chafa y el HUD de color Ghost Cyan.
 
 # Obtener el directorio absoluto del script
 DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
@@ -13,5 +13,12 @@ if ! command -v neofetch &> /dev/null; then
     exit 1
 fi
 
-# Ejecutar Neofetch con nuestra configuración HUD y el banner de ARCH personalizado
-neofetch --config "$DIR/config.conf" --ascii "$DIR/arch_ascii.txt"
+# Verificar si chafa está instalado para renderizar imágenes en Alacritty
+if ! command -v chafa &> /dev/null; then
+    echo -e "\e[1;33m[!] Nota: 'chafa' no está instalado. Para ver la imagen a todo color en Alacritty/VM, instálalo:\e[0m"
+    echo -e "   \e[1;32msudo pacman -S chafa\e[0m (en Arch Linux)"
+    echo -e "Mientras tanto, Neofetch se ejecutará con el logo de respaldo.\n"
+fi
+
+# Ejecutar Neofetch con nuestra configuración Ghost Cyan HUD y la imagen pixelArt.jpg estática
+neofetch --config "$DIR/config.conf"
